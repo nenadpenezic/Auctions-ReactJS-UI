@@ -1,0 +1,15 @@
+.main-header{
+    background-color: rgb(26, 184, 251);
+    padding: .5rem .8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-header__logo{
+    color: #ffffff;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+.main-header__log-in-btn{
+    margin-right: 2rem;
+}
