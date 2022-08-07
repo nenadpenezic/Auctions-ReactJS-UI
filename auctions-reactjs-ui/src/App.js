@@ -12,11 +12,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 import { useContext, useState } from 'react';
 import { Context } from './components/Context/ContextProvider';
+import { AddProduct } from './pages/AddProduct/AddProduct';
+import { Profile } from './pages/Profile/Profile';
 
 function App() {
 
   const {user} = useContext(Context);
-  
+  console.log("App")
   return (
     <div className="App">
       <Router>
@@ -26,6 +28,8 @@ function App() {
             <Route element = {<CompleteAccount/>} path='/complete' exact/>
             <Route element={<LogIn/>} path='/login' exact/>
             <Route element={<Register/>} path='/register' exact/>
+            <Route element = {<AddProduct/>} path ='/add-item' exact />
+            <Route element = {<Profile/>} path ='/profile' exact />
         </Routes>
       </Router>
     </div>

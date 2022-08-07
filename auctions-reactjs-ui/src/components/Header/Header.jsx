@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { Context } from '../Context/ContextProvider';
 
+import userImage from '../../assets/user.png'
 
 
 export const Header = () => {
@@ -21,9 +22,14 @@ export const Header = () => {
         </div>
         : user && !user.isAccountComplete? 
           <Link to="/register" className="white-bg-light-blue-txt-btn main-header__log-in-btn">Log out</Link>
-        :<div>
-
-        </div>
+        :<div className='main-header__user-panel'>
+            <div className='main-header__current-user'>
+                <img src={userImage} alt=""/>
+                <span className='main-header__user-name'>{user.name} {user.lastname}</span>
+            </div>
+            <Link to="/add-item" className="white-bg-light-blue-txt-btn main-header__log-in-btn">Add</Link>
+            <Link to="/register" className="white-bg-light-blue-txt-btn main-header__log-in-btn">Log out</Link>
+          </div>
         }
     </header>
   )

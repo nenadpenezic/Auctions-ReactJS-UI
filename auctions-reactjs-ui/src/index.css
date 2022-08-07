@@ -1,13 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
 *{
   margin: 0%;
   padding: 0%;
   text-decoration: none;
+  font-family: 'Poppins', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 .white-bg-light-blue-txt-btn{
   background-color: #ffffff;

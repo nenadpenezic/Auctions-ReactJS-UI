@@ -13,3 +13,15 @@
 .main-header__log-in-btn{
     margin-right: 2rem;
 }
+.main-header__user-panel, .main-header__current-user{
+    display: flex;
+    align-items: center;
+}
+.main-header__current-user{
+    margin-right: 5rem;
+}
+.main-header__user-name{
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-left: .8rem;
+}
