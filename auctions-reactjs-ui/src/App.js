@@ -32,7 +32,7 @@ function App() {
             <Route element={<Register/>} path='/register' exact/>
             <Route element = {<AddProduct/>} path ='/add-item' exact />
             <Route element = {<Profile/>} path ='/profile/:userID' exact />
-            <Route element = {<ItemDetails/>} path ='/item' exact />
+            <Route element = {<ItemDetails/>} path ='/item/:itemID' exact />
         </Routes>
       </Router>
       

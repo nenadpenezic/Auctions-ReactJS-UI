@@ -7,7 +7,7 @@ export const AddProduct = () => {
 
     const [itemName,setItemName]=useState("");
     const [description,setDescription]=useState("");
-    const [category,setCategory]=useState("");
+    const [category,setCategory]=useState(1);
     
     const navigate = useNavigate();
 
@@ -44,8 +44,8 @@ export const AddProduct = () => {
             const specValue = specs[i].lastChild;
             
             specsValues[i]={
-                specificationName:specName.value,
-                specificationValue:specValue.value
+                SpecificationName:specName.value,
+                SpecificationValue:specValue.value
             }
         }
         console.log(specsValues);
@@ -54,16 +54,17 @@ export const AddProduct = () => {
 
 const addItemApi=()=>{
     const token = localStorage.getItem('jwt');
-    console.log(category)
+    console.log(itemName)
     fetch('https://localhost:44301/api/Item/add-item', {
         method: 'POST',
+        mode: 'cors',
         headers: {'Content-Type':'application/json',
                     "Authorization" : `Bearer ${token}`},
         body: JSON.stringify({
-          ItemName:itemName,
-          Description:description,
-          NewItemSpecifications:getSpecs(),
-          CategoryID:category
+          itemName:itemName,
+          description:description,
+          newItemSpecifications:getSpecs(),
+          categoryID:parseInt(category)
         })
     })
     .then(()=>navigate("/"))
@@ -76,7 +77,7 @@ const addItemApi=()=>{
         <input type="text" name="Item_name" id="" placeholder="Item name" className="input-field" onChange={(event)=>setItemName(event.target.value)}/>
         <input type="text" name="Description" id="" placeholder="Description" className="input-field" onChange={(event)=>setDescription(event.target.value)}/>
         <select className="input-field category-dropdown"  onChange={(event)=>setCategory(event.target.value)}>
-        <option value="2">Racunari</option>
+            <option value="1">Racunari</option>
             <option value="3">Automobili</option>
             <option value="4">Bela tehnika</option>
             <option value="5">Delovi za auta</option>

@@ -1,5 +1,6 @@
 .main-container{
     width: 100%;
+    display: flex;
 }
 .item-details-container{
     width: 80%;
@@ -34,5 +35,58 @@
     margin-bottom: 1.5rem;
 }
 .offers-container{
-    width: 80%;
+    width: 20%;
+}
+
+
+
+
+
+.offer{
+    width: 100%;
+    display: flex;
+    align-items:flex-start;
+    justify-content: space-between;
+}
+.offer__buyer{
+    display: flex;
+    align-items: center;
+}
+.offer__buyer-image{
+    width: 42px;
+    height: 42px;
+    margin-right: .7rem;
+}
+.offer__ammount-container{
+    text-align: center;
+    align-self: flex-end;
+}
+.offer__buyer-name, .offer__offer-placed-date, .offer__ammount{
+    display: block;
+}
+.offer__buyer-name{
+    color: rgb(29, 28, 28);
+    font-size: .9rem;
+}
+.offer__offer-placed-date{
+    font-size: .8rem;
+}
+.offer__ammount{
+    font-weight:700;
+}
+.offer__btn{
+    color: #ffff;
+    border: unset;
+    padding: .3rem 0rem;
+    width: 6rem;
+    font-weight: 700;
+    border-radius: 5px;
+    display: block;
+}
+.offer__btn--accept{
+    background-color: rgb(138, 205, 70);
+}
+
+.offer__btn--reject{
+    background-color: rgb(245, 41, 41);
 }

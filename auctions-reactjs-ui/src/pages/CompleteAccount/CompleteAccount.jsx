@@ -30,7 +30,6 @@ export const CompleteAccount = () => {
     .then(()=>{
       navigate('/');
     })
-
     .catch(res => console.log(res));
   }
 

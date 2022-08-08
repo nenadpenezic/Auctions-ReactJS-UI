@@ -13,6 +13,7 @@ export const ItemsPanel = ({userID}) => {
         .then(res =>res.json())
         .then(res=>{
             setItems(res)
+            console.log(res)
         })
         .catch(res => console.log(res));
       },[])

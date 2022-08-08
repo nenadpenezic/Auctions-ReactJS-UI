@@ -1,23 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ItemDetailsStyle.css'
+import { Offers } from './Offers'
+
+import { useParams } from 'react-router-dom';
+import { ItemsInformations } from './ItemsInformations';
+
+import { useEffect } from 'react';
+
+
 export const ItemDetails = () => {
+
+  const currentUserID = useParams('itemID');
+  const [itemDetails,setItemDetails] = useState();
+
+    useEffect(()=>{
+        fetch(`https://localhost:44301/api/Item/item-details/${currentUserID.itemID}`, {
+            method: 'GET',
+            headers: {'Content-Type':'application/json'},
+        })
+        .then(res =>res.json())
+        .then(res=>{
+            setItemDetails(res)
+            console.log(res)
+        })
+        .catch(res => console.log(res));
+    },[])
+
+
+
   return (
     <div className='main-container'>
-        <div className='item-details-container'>
-            <div className='item-details'>
-                <div className='item-details__image-column'>
-                    <img src={{}} alt="" className='item-details__image'/>
-                </div>
-                <div className='item-details__info-column'>
+        {
+          itemDetails?
+          <>
+            <ItemsInformations item={itemDetails}/>
+            <Offers fetchedOffers={itemDetails}/>
+          </>:null
+        }
 
-                    <h2 className='item-details__item-name'>Item name</h2>
-                    <span className='item-details__item-price'>Item price</span>
-                    <p className='item-details__item-description'>Item description</p>
-                </div>
-            </div>
-            <div></div>
-        </div>
-        <div className='offers-container'></div>
     </div>
   )
 }
