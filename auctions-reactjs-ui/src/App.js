@@ -14,6 +14,8 @@ import { useContext, useState } from 'react';
 import { Context } from './components/Context/ContextProvider';
 import { AddProduct } from './pages/AddProduct/AddProduct';
 import { Profile } from './pages/Profile/Profile';
+import { Item } from './components/Item/Item';
+import { ItemDetails } from './pages/ItemDetails/ItemDetails';
 
 function App() {
 
@@ -29,9 +31,11 @@ function App() {
             <Route element={<LogIn/>} path='/login' exact/>
             <Route element={<Register/>} path='/register' exact/>
             <Route element = {<AddProduct/>} path ='/add-item' exact />
-            <Route element = {<Profile/>} path ='/profile' exact />
+            <Route element = {<Profile/>} path ='/profile/:userID' exact />
+            <Route element = {<ItemDetails/>} path ='/item' exact />
         </Routes>
       </Router>
+      
     </div>
   );
 }

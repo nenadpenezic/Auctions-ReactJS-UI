@@ -23,7 +23,7 @@ export const CompleteAccount = () => {
         body: JSON.stringify({
           Name:name,
           Lastname:lastName,
-          JMBG: contactMail,
+          emailForContact: contactMail,
           PhoneNumber: phoneNumber
         })
     })
@@ -39,7 +39,7 @@ export const CompleteAccount = () => {
     <CentralFormContainer>
         <input type="text" name="Name" id="" placeholder="Name" className="input-field" onChange={(event)=>setName(event.target.value)}/>
         <input type="text" name="Lastname" id="" placeholder="Lastname" className="input-field" onChange={(event)=>setLastname(event.target.value)}/>
-        <input type="text" name="contact-mail" id="" placeholder="Contact email" className="input-field" onChange={(event)=>setContactMail(event.target.value)}/>
+        <input type="email" name="contact-mail" id="" placeholder="Contact email" className="input-field" onChange={(event)=>setContactMail(event.target.value)}/>
         <input type="number" name="phone-number" id="" placeholder="Phone number" className="input-field" onChange={(event)=>setPhoneNumber(event.target.value)}/>
         <input type="date" name="date-of-birdh" id="" className="input-field"/>
         <button className="light-blue-bg-white-txt-btn" onClick={completeAccountApi}>Register</button>

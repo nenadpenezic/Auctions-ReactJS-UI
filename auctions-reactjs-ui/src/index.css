@@ -6,7 +6,9 @@
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
 }
-
+button{
+  cursor: pointer;
+}
 
 .white-bg-light-blue-txt-btn{
   background-color: #ffffff;

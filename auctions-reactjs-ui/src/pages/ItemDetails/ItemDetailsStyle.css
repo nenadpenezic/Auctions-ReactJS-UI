@@ -1,0 +1,38 @@
+.main-container{
+    width: 100%;
+}
+.item-details-container{
+    width: 80%;
+    padding: 1rem 1rem 0rem 1rem;
+}
+.item-details{
+    display: flex;
+}
+.item-details__image-column{
+    width: 50%;
+}
+.item-details__image{
+    width: 100%;
+}
+.item-details__info-column{
+    width: 50%;
+    text-align: center;
+    padding: 1rem 0rem 0rem 2rem;
+}
+.item-details__item-name{
+    font-size: 2.5rem;
+   
+}
+.item-details__item-price{
+    font-size: 2rem;
+    font-weight: 500;
+    color: rgb(25, 24, 24);
+}
+.item-details__item-description{
+    font-size: 1rem;
+    color: rgb(25, 24, 24);
+    margin-bottom: 1.5rem;
+}
+.offers-container{
+    width: 80%;
+}
