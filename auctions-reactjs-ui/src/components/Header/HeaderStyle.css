@@ -19,9 +19,63 @@
 }
 .main-header__current-user{
     margin-right: 5rem;
+    position: relative;
 }
 .main-header__user-name{
     color: #ffffff;
     font-size: 1.1rem;
     margin-left: .8rem;
+}
+
+.main-header__current-user-dropdown-menu{
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    width: 110%;
+    height: 0rem;
+    background-color: #ffff;
+    overflow: hidden;
+    
+}
+.main-header__current-user:hover .main-header__current-user-dropdown-menu {
+    height: 10rem;
+    box-shadow: 0px 0px 4px 2px #2b2c2c;
+}
+.main-header__dropdown-menu-option{
+    padding: .5rem 1rem;
+    display: block;
+    z-index: 1;
+    color: rgb(22, 19, 19);
+    font-weight: 700;
+    border-bottom: 1px solid #2b2c2c;
+}
+
+.main-header__notification-btn{
+    border: unset;
+    color: #ffff;
+    font-size: 2rem;
+    background-color: unset;
+}
+.main-header__notification-container{
+    position: relative;
+}
+.main-header__notification-list{
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    width: 30rem;
+    height: 0%;
+    background-color:#ffffff;
+    overflow: hidden;
+}
+.main-header__notification-list--open{
+    height: 10rem;
+    box-shadow: 0px 0px 4px 2px #2b2c2c;
+}
+.main-header__notification-list--closed{
+    height: 0rem;
+}
+.main-header__notification{
+    padding: 1rem .6rem;
+    border-bottom:1px solid #2b2c2c;
 }

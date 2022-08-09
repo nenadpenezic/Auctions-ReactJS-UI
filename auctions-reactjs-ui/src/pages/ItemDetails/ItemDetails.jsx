@@ -26,7 +26,29 @@ export const ItemDetails = () => {
         .catch(res => console.log(res));
     },[])
 
+  const addOffersToItemDetails=(offer)=>{
+    const updatedOffers = itemDetails.offers;
+    updatedOffers.unshift(offer)
+    setItemDetails({...itemDetails,offers:updatedOffers})
+  }
 
+  const updateOffersStateAfterSell=(offerID)=>{
+    const updatedData = itemDetails.offers.map((obj) => {
+      if (obj.offerID === offerID) {
+          return { ...obj, isAccepted: !obj.isAccepted };
+      } else return obj;
+  });
+    setItemDetails({...itemDetails,offers:updatedData})
+  }
+
+  const removeOfferFormItemDetails = (offerID) =>{
+    const restOffers = itemDetails.offers.filter((item)=>{
+      return item.offerID != offerID;
+    });
+    console.log(restOffers)
+    setItemDetails({...itemDetails,offers:restOffers})
+
+  }
 
   return (
     <div className='main-container'>
@@ -34,7 +56,12 @@ export const ItemDetails = () => {
           itemDetails?
           <>
             <ItemsInformations item={itemDetails}/>
-            <Offers fetchedOffers={itemDetails}/>
+            <Offers 
+            fetchedOffers={itemDetails} 
+            addOffersToItemDetails={addOffersToItemDetails} 
+            updateOffersStateAfterSell={updateOffersStateAfterSell}
+            removeOfferFormItemDetails={removeOfferFormItemDetails}
+            />
           </>:null
         }
 

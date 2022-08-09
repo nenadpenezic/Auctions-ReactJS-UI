@@ -20,6 +20,7 @@ import { ItemDetails } from './pages/ItemDetails/ItemDetails';
 function App() {
 
   const {user} = useContext(Context);
+  
   console.log("App")
   return (
     <div className="App">

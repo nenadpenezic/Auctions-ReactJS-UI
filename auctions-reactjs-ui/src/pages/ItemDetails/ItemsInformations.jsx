@@ -13,6 +13,14 @@ export const ItemsInformations = ({item}) => {
                     <h2 className='item-details__item-name'>{item.itemName}</h2>
                     <span className='item-details__item-price'>{item.price}</span>
                     <p className='item-details__item-description'>{item.description}</p>
+
+                    <ul className='item-details__item-specifications'>
+                        {
+                            item.itemSpecifications.map(specification=>{
+                                return <li className='item-details__item-specification'><span className='item-details__item-specifications-name'>{specification.specificationName}: </span> <span className='item-details__item-specification-value'> {specification.specificationValue}</span> </li>
+                            })
+                        }
+                    </ul>
                 </div>
             </div>
             <div></div>

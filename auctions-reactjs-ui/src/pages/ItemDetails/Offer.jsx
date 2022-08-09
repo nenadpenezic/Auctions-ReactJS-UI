@@ -4,7 +4,39 @@ import { useContext } from 'react'
 import profilePlaceHolder from '../../assets/user-placeholder.png';
 import { Context } from '../../components/Context/ContextProvider';
 
-export const Offer = ({offer, ownerID, index}) => {
+export const Offer = ({offer, 
+  ownerID, 
+  index, 
+  updateOffersStateAfterSell,
+  removeOfferFormItemDetails
+  }) => {
+
+  const sellItem =()=>{
+    const token = localStorage.getItem('jwt');
+    fetch(`https://localhost:44301/api/Offer/accept-offer/${offer.offerID}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {'Content-Type':'application/json',
+                    "Authorization" : `Bearer ${token}`},
+    })
+    .then((res)=>res.json())
+    .then(res=>updateOffersStateAfterSell(offer.offerID))
+    .catch(res => console.log(res));
+  }
+
+  
+  const removeOffer =()=>{
+    const token = localStorage.getItem('jwt');
+    fetch(`https://localhost:44301/api/Offer/reject-offer/${offer.offerID}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {'Content-Type':'application/json',
+                    "Authorization" : `Bearer ${token}`},
+    })
+    .then(res=>removeOfferFormItemDetails(offer.offerID))
+    .catch(res => console.log(res));
+  }
+
     const {user} = useContext (Context);
 
         const ActionButton=()=>{
@@ -15,9 +47,9 @@ export const Offer = ({offer, ownerID, index}) => {
             return null; 
 
         if(offer.isAccepted)
-            return ( <button className='offer__btn offer__btn--reject'>Reject offer</button> )
+            return ( <button className='offer__btn offer__btn--reject' onClick={removeOffer}>Reject offer</button> )
         if(!offer.isAccepted)
-            return ( <button className='offer__btn offer__btn--accept'>Accept offer</button> )
+            return ( <button className='offer__btn offer__btn--accept' onClick={sellItem}>Accept offer</button> )
     }
   return (
     <div className='offer'>

@@ -34,11 +34,45 @@
     color: rgb(25, 24, 24);
     margin-bottom: 1.5rem;
 }
+.item-details__item-specifications{
+    text-align: left;
+}
+.item-details__item-specification{
+    margin-bottom: 1rem;
+}
+.item-details__item-specifications-name{
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+.item-details__item-specifications-name{
+    font-size: 1.1rem;
+}
 .offers-container{
     width: 20%;
 }
 
 
+
+
+.add-offer{
+    display: flex;
+    margin-bottom: 2rem;
+}
+.add-offer__input{
+    border: 1px solid gray;
+    padding: .3rem;
+    border-radius: 5px;
+    flex: 2;
+}
+.add-offer__button{
+    padding: .3rem;
+    margin-left: .5rem;
+    border-radius: 5px;
+    border:unset;
+    color: #ffff;
+    background-color: rgb(140, 249, 6);
+    font-weight: 700;
+}
 
 
 
@@ -47,6 +81,7 @@
     display: flex;
     align-items:flex-start;
     justify-content: space-between;
+    margin: 1rem 0rem;
 }
 .offer__buyer{
     display: flex;
