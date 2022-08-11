@@ -29,12 +29,16 @@ export const LogIn = () => {
       
       console.log(res.userObj);
       localStorage.setItem('jwt',res.token);
-      setUser(res.userObj);
-
-      if(!res.userObj.isAccountComplete)
+     
+  
+      if(!res.userObj){
         history(`/complete`);
-      else
+      }
+      else{
+        setUser(res.userObj);
         history(`/`);
+      }
+        
     })
     .catch(res => console.log(res));
 

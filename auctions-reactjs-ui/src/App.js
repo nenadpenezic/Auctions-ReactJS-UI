@@ -14,9 +14,11 @@ import { useContext, useState } from 'react';
 import { Context } from './components/Context/ContextProvider';
 import { AddProduct } from './pages/AddProduct/AddProduct';
 import { Profile } from './pages/Profile/Profile';
-import { Item } from './components/Item/Item';
 import { ItemDetails } from './pages/ItemDetails/ItemDetails';
-
+import { UserReports } from './pages/AdministratorDashboard/UserReports';
+import { Dashboard } from './pages/AdministratorDashboard/Dashboard';
+import {ItemAdministratorPanel} from './pages/AdministratorDashboard/ItemAdministratorPanel'
+import {UserAdministratorPanel} from './pages/AdministratorDashboard/UserAdministratorPanel'
 function App() {
 
   const {user} = useContext(Context);
@@ -34,6 +36,11 @@ function App() {
             <Route element = {<AddProduct/>} path ='/add-item' exact />
             <Route element = {<Profile/>} path ='/profile/:userID' exact />
             <Route element = {<ItemDetails/>} path ='/item/:itemID' exact />
+            <Route element ={<Dashboard/>} path='/dashboard' exact>
+              <Route element={<UserReports/>} path='user-reports' exact/>
+              <Route element={<UserAdministratorPanel/>} path='users' exact/>
+              <Route element={<ItemAdministratorPanel/>} path='items' exact/>
+            </Route>
         </Routes>
       </Router>
       

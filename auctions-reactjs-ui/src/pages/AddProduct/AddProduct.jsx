@@ -8,7 +8,7 @@ export const AddProduct = () => {
     const [itemName,setItemName]=useState("");
     const [description,setDescription]=useState("");
     const [category,setCategory]=useState(1);
-    
+    const [picture,setPicture]=useState();
     const navigate = useNavigate();
 
     const addSpecification=()=>{
@@ -48,34 +48,54 @@ export const AddProduct = () => {
                 SpecificationValue:specValue.value
             }
         }
-        console.log(specsValues);
         return specsValues;
     }
-
+const getPicture=()=>{
+    const itemPhoto = document.getElementById('item-photo');
+    return itemPhoto.files[0];
+}
 const addItemApi=()=>{
+    const specs = getSpecs();
+    const formData = new FormData();
+    formData.append('itemName',itemName);
+    formData.append('description',description);
+    formData.append('newItemSpecifications',JSON.stringify(specs));
+    formData.append('itemPicture', getPicture())
+    
+
+    formData.append('categoryID',parseInt(category));
+    //formData.append('formFile',getPicture());
+
+    console.log(specs)
+
+
     const token = localStorage.getItem('jwt');
-    console.log(itemName)
+    console.log(picture)
     fetch('https://localhost:44301/api/Item/add-item', {
         method: 'POST',
         mode: 'cors',
-        headers: {'Content-Type':'application/json',
-                    "Authorization" : `Bearer ${token}`},
-        body: JSON.stringify({
-          itemName:itemName,
-          description:description,
-          newItemSpecifications:getSpecs(),
-          categoryID:parseInt(category)
-        })
+        headers: {"Authorization" : `Bearer ${token}`},
+        body: formData
+        
+        //JSON.stringify({
+          //itemName:itemName,
+          //description:description,
+          //newItemSpecifications:getSpecs(),
+          //categoryID:parseInt(category),
+          //formFile:getPicture()
+        //})
     })
-    .then(()=>navigate("/"))
+    .then(res=>res.json())
+    .then(res=>console.log(res))
     .catch(res => console.log(res));
 }
 
 
+
   return (
     <CentralFormContainer>
-        <input type="text" name="Item_name" id="" placeholder="Item name" className="input-field" onChange={(event)=>setItemName(event.target.value)}/>
-        <input type="text" name="Description" id="" placeholder="Description" className="input-field" onChange={(event)=>setDescription(event.target.value)}/>
+        <input type="text" name="itemName" id="" placeholder="Item name" className="input-field" onChange={(event)=>setItemName(event.target.value)}/>
+        <input type="text" name="description" id="" placeholder="Description" className="input-field" onChange={(event)=>setDescription(event.target.value)}/>
         <select className="input-field category-dropdown"  onChange={(event)=>setCategory(event.target.value)}>
             <option value="1">Racunari</option>
             <option value="3">Automobili</option>
@@ -88,6 +108,7 @@ const addItemApi=()=>{
 
         </div>
         <button className='light-blue-bg-white-txt-btn add-specification-btn' onClick={addSpecification}>Add Specification</button> <br />
+        <input type="file" name="" id="item-photo" />
         <button className='light-blue-bg-white-txt-btn' onClick={addItemApi}>Add product to sell.</button>
     </CentralFormContainer>
   )

@@ -68,11 +68,11 @@ ul{
 .body-content-menu{
     padding: 0% 2rem;
     margin-bottom: 2rem;
-    
+    display: flex;
     border-bottom: 1px solid gray;
 }
 .body-content-menu__button{
-    width: 50%;
+    flex: 1;
     font-size: 1.5rem;
     background-color: unset;
     border: unset;
@@ -143,4 +143,23 @@ ul{
 .review-card__reviewer-grade{
     font-size: 2rem;
     font-weight: 700;
+}
+
+
+.report-panel{
+    padding: 0% 20%;
+}
+.report-panel__title{
+    text-align: center;
+    margin-bottom: 1.1rem;
+}
+.report-panel__input-title, .report-panel__textarea{
+    display: block;
+    width: 100%;
+    padding: .5rem;
+    border-radius: 5px;
+    border:1px solid gray
+}
+.report-panel__input-title{
+    margin-bottom: 1rem;
 }

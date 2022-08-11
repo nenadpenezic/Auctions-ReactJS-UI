@@ -13,6 +13,7 @@ import { ItemsPanel } from './ItemsPanel'
 import { ReviewsPanel } from './ReviewsPanel'
 
 import { useState } from 'react'
+import { ReportPanel } from './ReportPanel';
 
 
 
@@ -29,11 +30,14 @@ export const Profile = () => {
           <div className='profile-body'>
             <div className='body-content-menu'>
               <button className='body-content-menu__button' onClick={()=>{setCurrentDisplayPanel('items')}}><FontAwesomeIcon icon={faPager}/></button>
-              <button className='body-content-menu__button' onClick={()=>{setCurrentDisplayPanel('notifications')}}><FontAwesomeIcon icon={faUser}/></button>
+              <button className='body-content-menu__button' onClick={()=>{setCurrentDisplayPanel('reviews')}}><FontAwesomeIcon icon={faUser}/></button>
+              <button className='body-content-menu__button' onClick={()=>{setCurrentDisplayPanel('report')}}><FontAwesomeIcon icon={faUser}/></button>
             </div>
             {currentDisplayPanel == 'items'?
               <ItemsPanel userID={currentUserID.userID}/>:
+              currentDisplayPanel == 'reviews'?
               <ReviewsPanel userID={currentUserID.userID}/>
+              :<ReportPanel userID={currentUserID.userID}/>
             }
           </div>
         </div>

@@ -7,7 +7,7 @@ export const ItemsInformations = ({item}) => {
         <div className='item-details-container'>
             <div className='item-details'>
                 <div className='item-details__image-column'>
-                    <img src={{}} alt="" className='item-details__image'/>
+                    <img src={`https://localhost:44301/Images/${item.itemPhotos?item.itemPhotos[0]:null}`} alt="" className='item-details__image'/>
                 </div>
                 <div className='item-details__info-column'>
                     <h2 className='item-details__item-name'>{item.itemName}</h2>

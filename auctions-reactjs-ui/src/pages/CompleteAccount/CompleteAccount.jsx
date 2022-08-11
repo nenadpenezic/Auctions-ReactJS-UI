@@ -7,7 +7,7 @@ export const CompleteAccount = () => {
   const [name, setName] = useState("");
   const [lastName, setLastname] = useState("");
   const [contactMail, setContactMail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState();
   const [dateOfBirth, setDateOfBirth] = useState("");
 
   
@@ -23,8 +23,8 @@ export const CompleteAccount = () => {
         body: JSON.stringify({
           Name:name,
           Lastname:lastName,
-          emailForContact: contactMail,
-          PhoneNumber: phoneNumber
+          EmailForContact: contactMail,
+          PhoneNumber: parseInt(phoneNumber)
         })
     })
     .then(()=>{
