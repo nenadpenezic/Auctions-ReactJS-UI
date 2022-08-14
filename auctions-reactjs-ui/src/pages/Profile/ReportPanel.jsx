@@ -36,7 +36,7 @@ export const ReportPanel = ({userID}) => {
         <form className='report-panel__form'>
             <input type="text" placeholder='Razlog za prijavu' className='report-panel__input-title' onChange={(event)=>setReportTitle(event.target.value)}/>
             <textarea name="" id="" cols="30" rows="10" placeholder='Detaljnije objasnjenje' className='report-panel__textarea' onChange={(event)=>setReportExplanation(event.target.value)}></textarea>
-            <button onClick={sendReport}>Submit report</button>
+            <button onClick={sendReport}>Posalji prijavu</button>
         </form>
     </div>
 

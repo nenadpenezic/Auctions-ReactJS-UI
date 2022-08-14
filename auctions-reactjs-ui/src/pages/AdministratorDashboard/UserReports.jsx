@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { UserReportCard } from '../../components/UserReportCard/UserReportCard';
+import { UserReportCard } from './UserReportCard';
 
 export const UserReports = () => {
     const [userReports, setUserReports] = useState([]);

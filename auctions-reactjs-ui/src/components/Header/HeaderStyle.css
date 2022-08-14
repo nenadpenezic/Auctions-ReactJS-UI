@@ -21,6 +21,11 @@
     margin-right: 5rem;
     position: relative;
 }
+.main-header__profile-photo{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
 .main-header__user-name{
     color: #ffffff;
     font-size: 1.1rem;
@@ -69,7 +74,7 @@
     overflow: hidden;
 }
 .main-header__notification-list--open{
-    height: 10rem;
+    height: 20rem;
     box-shadow: 0px 0px 4px 2px #2b2c2c;
 }
 .main-header__notification-list--closed{

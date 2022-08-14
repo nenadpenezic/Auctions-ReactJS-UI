@@ -35,7 +35,7 @@ export const ProfileDetails=({userID})=>{
         {userProfile?
         <div className='profile-details-container'>
             <div className='profile-details'>
-                <img src={profilePlaceHolder} alt="" className='profile-details__profile-image'/>
+                <img src={userProfile.profilePhoto?`https://localhost:44301/Images/${userProfile.profilePhoto} `:profilePlaceHolder} alt="" className='profile-details__profile-image'/>
                 <ul className='profile-details__user-info'>
                     <li className='profile-details__user-info-li profile-details__profile-name'>{userProfile.name} {userProfile.lastname}</li>
                     <li className='profile-details__user-info-li'> <FontAwesomeIcon icon={faLocationPin} /> City, Country</li>

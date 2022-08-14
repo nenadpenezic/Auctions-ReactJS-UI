@@ -3,6 +3,22 @@
     margin: auto;
 }
 
+.dashboard-panel-link-container{
+    display: flex;
+    text-align: center;
+    padding: 1rem 0rem;
+    border-bottom:1px solid #262927;
+    margin-bottom: 1rem;
+}
+.dashboard-panel-link{
+    flex: 1;
+    color: #262927;
+}
+
+
+
+
+
 .search-field{
     width: 100%;
     padding: .5rem;
@@ -10,6 +26,40 @@
     border:1px solid #363131;
     border-radius: 5px;
 }
+.dashboard-card__block-input-field{
+    padding: .5rem;
+    border:1px solid #363131;
+    border-radius: 5px;
+    flex: 2;
+}
+.dashboard-card__block-form-container{
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+.--open{
+    height: 40px;
+}
+.--closed{
+    height: 0px;
+    overflow: hidden;
+}
+.dashboard-card__block-confirm{
+    align-self: stretch;
+    border:unset;
+    border-radius: 5px;
+    width: 5rem;
+    margin-left: 2rem;
+    background-color: #05ed43;
+    color: #ffff;
+    
+}
+
+
+
+
+
+
 
 .administrator-item-card__container{
     margin: 2rem 0rem;
@@ -62,31 +112,110 @@
 .administrator-item-card__block-btn{
     background-color: #1AB8FB;
 }
-.administrator-item-card__block-input-field{
-    padding: .5rem;
-    border:1px solid #363131;
+
+
+
+.user-report-card{
+    border:1px solid #262927;
+    padding: 1rem;
     border-radius: 5px;
-    flex: 2;
 }
-.administrator-item-card__block-form-container{
+.user-report-card__header{
     display: flex;
     align-items: center;
-    margin-top: 1rem;
+    justify-content: space-between;
 }
-.--open{
-    height: 40px;
+.user-report-card__arrow-down{
+    font-size: 1.5rem;
 }
-.--closed{
-    height: 0px;
-    overflow: hidden;
+.user-report-card__header-title{
+    font-size: 1.5rem;
 }
-.administrator-item-card__block-confirm{
-    align-self: stretch;
-    border:unset;
-    border-radius: 5px;
-    width: 5rem;
-    margin-left: 2rem;
+.user-report-card__content{
+    border-top:1px solid #262927;
+    padding-top: .5rem;
+}
+.user-report-card__content-header{
+    font-size: .9rem;
+}
+.user-report-card__content-title{
+    font-size: 1.2rem;
+}
+.user-report-card__content-details{
+    font-size: .85rem;
+}
+.user-report-card__notifications{
+    text-align: center;
+}
+.user-report-card__notifications-title{
+    font-size: .8rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+.user-report-card__notification-form{
+    display: flex;
+}
+.user-report-card__notification-input-filed{
+    flex: 2;
+    padding: .5rem;
+    resize: none;
+}
+.user-report-card__notification-button{
+    padding: .5rem;
     background-color: #05ed43;
+    border: none;
+    margin-left: 1rem;
     color: #ffff;
-    
+    border-radius: 5px;
+}
+
+
+
+
+
+.user-admin-card{
+    padding: 1.5rem .5rem;
+}
+.user-admin-card__details-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.user-admin-card__details{
+    display: flex;
+    align-items: center;
+}
+.user-admin-card__profile-picture{
+    width: 64px;
+    height: 64px;
+    margin-right: 1rem;
+}
+.user-admin-card__informations span{
+    display: block;
+}
+.user-admin-card__name{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color:#262927;
+}
+.user-admin-card__email, .user-admin-card__phone-number{
+    font-size: .95rem;
+    color:#262927;
+}
+.user-admin-card__btn{
+    padding: .5rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: unset;
+    color: #ffff;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+}
+.user-admin-card__block-btn{
+    background-color: #f71e1e;
+    margin-bottom: .5rem;
+}
+.user-admin-card__notification-btn{
+    background-color: #04cafc;
 }

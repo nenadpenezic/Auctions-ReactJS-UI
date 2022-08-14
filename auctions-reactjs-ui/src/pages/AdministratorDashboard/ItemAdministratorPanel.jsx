@@ -25,7 +25,7 @@ export const ItemAdministratorPanel = () => {
   return (
     <div >
       <div>
-          <input type="text" onChange={(event)=>search(event.target.value)} className='search-field'/>
+          <input type="text" onChange={(event)=>search(event.target.value)} className='search-field' placeholder='Pronadjite proizvode'/>
       </div>
       <div>
         {
@@ -41,11 +41,13 @@ export const ItemAdministratorPanel = () => {
 
 const ItemAdministratorCard = ({item}) =>{
   const [triggerInput, setTriggerInput] = useState("");
+  const [notificationText, setNotificationText] = useState('');
   ///api/Item/delete-item/{itemID}
   const deleteItem =()=>{
     fetch(`https://localhost:44301/api/Item/delete-item/${item.itemID}`, {
-      method: 'GET',
+      method: 'POST',
       headers: {'Content-Type':'application/json'},
+      body:JSON.stringify(notificationText)
     })
     .then(res =>console.log('done'))
     .catch(res => console.log(res));
@@ -53,8 +55,9 @@ const ItemAdministratorCard = ({item}) =>{
 
   const blockItem = () =>{
     fetch(`https://localhost:44301/api/Item/block-item/${item.itemID}`, {
-      method: 'GET',
+      method: 'POST',
       headers: {'Content-Type':'application/json'},
+      body:JSON.stringify(notificationText)
     })
     .then(res =>console.log('done'))
     .catch(res => console.log(res));
@@ -62,8 +65,9 @@ const ItemAdministratorCard = ({item}) =>{
   
   const unblockItem = () =>{
     fetch(`https://localhost:44301/api/Item/unblock-item/${item.itemID}`, {
-      method: 'GET',
+      method: 'POST',
       headers: {'Content-Type':'application/json'},
+      body:JSON.stringify(notificationText)
     })
     .then(res =>console.log('done'))
     .catch(res => console.log(res));
@@ -99,14 +103,14 @@ const ItemAdministratorCard = ({item}) =>{
         </div>
         {
           triggerInput=='block'?
-          <div className={`administrator-item-card__block-form-container`}>
-            <input type="text" placeholder='Razlog za blokiranje proizvoda' className='administrator-item-card__block-input-field'/>
-            <button className='administrator-item-card__block-confirm' onClick={blockItem}>Potvrdi</button>
+          <div className={`dashboard-card__block-form-container`}>
+            <input type="text" placeholder='Razlog za blokiranje proizvoda' className='dashboard-card__block-input-field' onClick={(event)=>setNotificationText(event.target.value)}/>
+            <button className='dashboard-card__block-confirm' onClick={blockItem}>Potvrdi</button>
           </div>: 
           triggerInput == 'delete'?
-          <div className={`administrator-item-card__block-form-container`}>
-            <input type="text" placeholder='Razlog za brisanje proizvoda' className='administrator-item-card__block-input-field'/>
-            <button className='administrator-item-card__block-confirm' onClick={deleteItem}>Potvrdi</button>
+          <div className={`dashboard-card__block-form-container`}>
+            <input type="text" placeholder='Razlog za brisanje proizvoda' className='dashboard-card__block-input-field' onClick={(event)=>setNotificationText(event.target.value)}/>
+            <button className='dashboard-card__block-confirm' onClick={deleteItem}>Potvrdi</button>
           </div>:
           null
 

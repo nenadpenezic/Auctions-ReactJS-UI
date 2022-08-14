@@ -1,7 +1,9 @@
+
 .item-card{
     width: 100%;
     border-radius: 5px;
     border: .5px solid gray;
+    overflow: hidden;
 }
 .item-card__item-image{
     width: 100%;
@@ -9,9 +11,33 @@
 .item-card__info-container{
     padding: 1.05rem;
 }
+.item-card__category{
+    font-size: .8rem;
+    color:#262525;
+}
 .item-card__item-name{
-    padding-bottom: .2rem;
+    font-size: 1.1rem;
+    color:#262525;
 }
 .item-card__item-price{
     font-weight: 700;
+    font-size: 1.5rem;
+    color:#262525;
+    margin-right: 1rem;
+}
+.item-card__owner{
+    display: block;
+    z-index: 2;
+    font-size: .8rem;
+    color: #5c5a5a;
+}
+.item-card__item-avalibe{
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+.--sold{
+    color: #ff0015;
+}
+.--avalible{
+    color: #09ff00;
 }

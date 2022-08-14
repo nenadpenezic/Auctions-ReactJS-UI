@@ -20,6 +20,7 @@ ul{
 .profile-details__profile-image{
     width: 200px;
     height: 200px;
+    border-radius: 50%;
 }
 .profile-details__user-info{
     margin-left: 3rem;
@@ -65,6 +66,7 @@ ul{
 
 
 
+
 .body-content-menu{
     padding: 0% 2rem;
     margin-bottom: 2rem;
@@ -80,7 +82,7 @@ ul{
 }
 .user-items{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
 }
 

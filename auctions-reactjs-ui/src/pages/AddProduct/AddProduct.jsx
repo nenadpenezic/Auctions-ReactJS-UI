@@ -51,17 +51,21 @@ export const AddProduct = () => {
         return specsValues;
     }
 const getPicture=()=>{
-    const itemPhoto = document.getElementById('item-photo');
-    return itemPhoto.files[0];
+    const itemPhoto = document.getElementById('item-photo').files;
+    console.log(JSON.stringify(itemPhoto))
+    return itemPhoto;
 }
 const addItemApi=()=>{
     const specs = getSpecs();
+    const files = getPicture();
     const formData = new FormData();
     formData.append('itemName',itemName);
     formData.append('description',description);
     formData.append('newItemSpecifications',JSON.stringify(specs));
-    formData.append('itemPicture', getPicture())
     
+    for (let i = 0; i<files.length;i++){
+        formData.append(`itemPictures`, files[i])
+    }
 
     formData.append('categoryID',parseInt(category));
     //formData.append('formFile',getPicture());
@@ -76,14 +80,6 @@ const addItemApi=()=>{
         mode: 'cors',
         headers: {"Authorization" : `Bearer ${token}`},
         body: formData
-        
-        //JSON.stringify({
-          //itemName:itemName,
-          //description:description,
-          //newItemSpecifications:getSpecs(),
-          //categoryID:parseInt(category),
-          //formFile:getPicture()
-        //})
     })
     .then(res=>res.json())
     .then(res=>console.log(res))
@@ -94,8 +90,8 @@ const addItemApi=()=>{
 
   return (
     <CentralFormContainer>
-        <input type="text" name="itemName" id="" placeholder="Item name" className="input-field" onChange={(event)=>setItemName(event.target.value)}/>
-        <input type="text" name="description" id="" placeholder="Description" className="input-field" onChange={(event)=>setDescription(event.target.value)}/>
+        <input type="text" name="itemName" id="" placeholder="Ime predmeta za licitaciju" className="input-field" onChange={(event)=>setItemName(event.target.value)}/>
+        <input type="text" name="description" id="" placeholder="Opis" className="input-field" onChange={(event)=>setDescription(event.target.value)}/>
         <select className="input-field category-dropdown"  onChange={(event)=>setCategory(event.target.value)}>
             <option value="1">Racunari</option>
             <option value="3">Automobili</option>
@@ -107,9 +103,9 @@ const addItemApi=()=>{
         <div className="item-specs" >
 
         </div>
-        <button className='light-blue-bg-white-txt-btn add-specification-btn' onClick={addSpecification}>Add Specification</button> <br />
-        <input type="file" name="" id="item-photo" />
-        <button className='light-blue-bg-white-txt-btn' onClick={addItemApi}>Add product to sell.</button>
+        <button className='light-blue-bg-white-txt-btn add-specification-btn' onClick={addSpecification}>Specifikacije predmeta</button> <br />
+        <input type="file" name="ItemPictures" id="item-photo" multiple onChange={(event)=>setPicture(event.target.files)}/>
+        <button className='light-blue-bg-white-txt-btn' onClick={addItemApi}>Postavi proizvod za prodaju</button>
     </CentralFormContainer>
   )
 }

@@ -29,7 +29,7 @@ export const Header = () => {
         :<div className='main-header__user-panel'>
             <Link to={"/profile/"+user.userID}>
               <div className='main-header__current-user'>
-                <img src={userImage} alt=""/>
+                <img src={`https://localhost:44301/Images/${user.profilePhoto}`} alt="" className='main-header__profile-photo'/>
                 <span className='main-header__user-name'>{user.name} {user.lastname}</span>
 
                 <ul className='main-header__current-user-dropdown-menu'>

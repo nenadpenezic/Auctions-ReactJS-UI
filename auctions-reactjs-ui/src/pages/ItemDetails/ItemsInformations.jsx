@@ -1,13 +1,20 @@
 import React from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react'
 import './ItemDetailsStyle.css'
 
 export const ItemsInformations = ({item}) => {
+    const [mainImage, setMainImage] = useState('');
+    
+    useEffect(()=>{
+        setMainImage(item.itemPhotos[0])
+    },[])
 
   return (
         <div className='item-details-container'>
             <div className='item-details'>
                 <div className='item-details__image-column'>
-                    <img src={`https://localhost:44301/Images/${item.itemPhotos?item.itemPhotos[0]:null}`} alt="" className='item-details__image'/>
+                    <img src={`https://localhost:44301/Images/${mainImage?mainImage:null}`} alt="" className='item-details__image'/>
                 </div>
                 <div className='item-details__info-column'>
                     <h2 className='item-details__item-name'>{item.itemName}</h2>
@@ -23,7 +30,13 @@ export const ItemsInformations = ({item}) => {
                     </ul>
                 </div>
             </div>
-            <div></div>
+            <div className='item-details__item-photos'>
+                {
+                    item.itemPhotos.map(photo=>{
+                        return <img src={`https://localhost:44301/Images/${photo}`} alt='item-photo-preview' className='item-details__item-photo' onClick={()=>setMainImage(photo)}/>
+                    })
+                }
+            </div>
         </div>
   )
 }
