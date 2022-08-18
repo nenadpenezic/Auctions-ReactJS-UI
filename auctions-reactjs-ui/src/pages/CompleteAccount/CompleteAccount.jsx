@@ -6,61 +6,62 @@ import { useContext } from 'react';
 import { Context } from '../../components/Context/ContextProvider';
 
 export const CompleteAccount = () => {
-  const [name, setName] = useState("");
-  const [lastName, setLastname] = useState("");
-  const [contactMail, setContactMail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState();
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [profileImage, setProfileImage] = useState();
 
   const {setUser} = useContext(Context);
   
-  
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  console.log(profileImage)
-  const completeAccountApi=(event)=>{
+
+  const completeAccount=(event)=>{
+
     event.preventDefault();
 
-    const form = new FormData();
-    form.append('Name',name);
-    form.append('Lastname', lastName);
-    form.append('EmailForContact', contactMail);
-    form.append('PhoneNumber',parseInt(phoneNumber));
-    form.append('ProfilePicture', profileImage)
+    const name = document.getElementById('name').value;
+    const lastname = document.getElementById('lastname').value;
+    const contactMail = document.getElementById('contact-email').value;
+    const phoneNumber = document.getElementById('phone-number').value;
+    const profileImage = document.getElementById('profile-picture').files[0];
+    const dateOfBirth = document.getElementById('date-of-birth').value;
     
+    const form = new FormData();
+    form.append('name',name);
+    form.append('lastname', lastname);
+    form.append('emailForContact', contactMail);
+    form.append('PhoneNumber',phoneNumber);
+    form.append('ProfilePicture', profileImage);
+    form.append('DateOfBirth', dateOfBirth);
+
     const token = localStorage.getItem('jwt');
 
     fetch('https://localhost:44301/api/User/complete-account', {
         method: 'POST',
-        headers: {//'Content-Type':'application/json',
-                  "Authorization" : `Bearer ${token}`},
+        headers: {"Authorization" : `Bearer ${token}`},
         body: form
-        //JSON.stringify({
-          //Name:name,
-          //Lastname:lastName,
-          //EmailForContact: contactMail,
-         // PhoneNumber: parseInt(phoneNumber)
-       // })
     })
-    .then((res)=>{return res.json()}).then(res=>{
+    .then(res=>res.json())
+    .then(res=>{
       setUser(res);
       navigate('/')
     })
-    .catch(res => console.log(res));
+    .catch(res => setMessage('Došlo je do greške, proverite unete informacije!'));
   }
 
 
   return (
     <CentralFormContainer>
-      <form onSubmit={completeAccountApi}>
-        <input type="text" name="Name" id="" placeholder="Name" className="input-field" onChange={(event)=>setName(event.target.value)}/>
-        <input type="text" name="Lastname" id="" placeholder="Lastname" className="input-field" onChange={(event)=>setLastname(event.target.value)}/>
-        <input type="email" name="contact-mail" id="" placeholder="Contact email" className="input-field" onChange={(event)=>setContactMail(event.target.value)}/>
-        <input type="number" name="phone-number" id="" placeholder="Phone number" className="input-field" onChange={(event)=>setPhoneNumber(event.target.value)}/>
-        <input type="date" name="date-of-birdh" id="" className="input-field"/>
-        <input type="file" name="profile-picture" id="" onChange={(event)=>setProfileImage(event.target.files[0])}/>
-        <button className="light-blue-bg-white-txt-btn">Register</button>
+      <h1 className='form-title'>Lične informacije</h1>
+      <form onSubmit={completeAccount}>
+        <input type="text" name="Name" id="name" placeholder="Ime" className="input-field" required/>
+        <input type="text" name="Lastname" id="lastname" placeholder="Prezime" className="input-field"/>
+        <input type="email" name="contact-mail" id="contact-email" placeholder="Email za kontakt" className="input-field" required/>
+        <input type="text" name="phone-number" id="phone-number" placeholder="Broj telefona" className="input-field" required/>
+        <label htmlFor="date-of-birth">Datum rođenja</label>
+        <input type="date" name="date-of-birth" id="date-of-birth" className="input-field" required placeholder=''/>
+        <label htmlFor="profile-picture">Profilna slika</label>
+        <input type="file" name="profile-picture" id="profile-picture" required className="input-field"/>
+        <input type='submit' className="light-blue-bg-white-txt-btn central-form-submit-btn" value='Završite registraciju'/>
       </form>
+      <span className='message'>{message}</span>
     </CentralFormContainer>
   )
 }

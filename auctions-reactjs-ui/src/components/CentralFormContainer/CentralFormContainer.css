@@ -4,8 +4,31 @@
     justify-content: center;
     height: 100vh;
     width: 100%;
-    overflow-y: hidden;
+
 }
-.central-form input{
+.form-container{
+    width: 30rem;
+
+}
+.input-field{
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: .8rem 1rem;
+    margin-bottom: 1rem;
     display: block;
+    width: 100%;
+}
+.form-title{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.central-form-submit-btn{
+    width: 100%;
+}
+.message{
+    font-size: 1.1rem;
+    text-align: center;
+    display: block;
+    margin-top: 1.5rem;
 }

@@ -5,10 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './AddProductStyle.css'
 export const AddProduct = () => {
 
-    const [itemName,setItemName]=useState("");
-    const [description,setDescription]=useState("");
-    const [category,setCategory]=useState(1);
-    const [picture,setPicture]=useState();
+    const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
     const addSpecification=()=>{
@@ -20,7 +17,6 @@ export const AddProduct = () => {
         specName.className = 'input-field spec-name';
         specName.placeholder = 'Specification name';
         specName.type = 'text';
-        //specName.onchange = (event)=>setName(event.target.value);
 
         const specValue = document.createElement('input');
 
@@ -28,7 +24,6 @@ export const AddProduct = () => {
         specValue.placeholder = 'Specification value';
         specValue.type = 'text';
 
-        //specValue.onchange = (event)=>setName(event.target.value);
         specContainer.appendChild(specName);
         specContainer.appendChild(specValue);
         document.getElementsByClassName('item-specs')[0].append(specContainer);
@@ -50,62 +45,81 @@ export const AddProduct = () => {
         }
         return specsValues;
     }
+
 const getPicture=()=>{
     const itemPhoto = document.getElementById('item-photo').files;
     console.log(JSON.stringify(itemPhoto))
     return itemPhoto;
 }
-const addItemApi=()=>{
+
+const addItem=(e)=>{
+    e.preventDefault();
+
+    const itemName = document.getElementById('item-name').value;
+    const description = document.getElementById('description').value; //pocetna-cena
+    const startingPrice = document.getElementById('start-price').value;
+    const category = document.getElementById('category').value;
+    const currency = document.getElementById('currency').value;
+
     const specs = getSpecs();
     const files = getPicture();
     const formData = new FormData();
     formData.append('itemName',itemName);
     formData.append('description',description);
     formData.append('newItemSpecifications',JSON.stringify(specs));
-    
     for (let i = 0; i<files.length;i++){
         formData.append(`itemPictures`, files[i])
     }
-
     formData.append('categoryID',parseInt(category));
-    //formData.append('formFile',getPicture());
-
-    console.log(specs)
-
+    formData.append('price',startingPrice);
+    formData.append('currency',currency);
 
     const token = localStorage.getItem('jwt');
-    console.log(picture)
     fetch('https://localhost:44301/api/Item/add-item', {
         method: 'POST',
         mode: 'cors',
         headers: {"Authorization" : `Bearer ${token}`},
         body: formData
     })
-    .then(res=>res.json())
-    .then(res=>console.log(res))
-    .catch(res => console.log(res));
+    .then(()=>setMessage('Predmet je dodat na licitaciju!'))
+    .catch(() => setMessage('Nastala je greska prilikom dodaje, proverite unete informacije!'));
 }
 
 
 
   return (
     <CentralFormContainer>
-        <input type="text" name="itemName" id="" placeholder="Ime predmeta za licitaciju" className="input-field" onChange={(event)=>setItemName(event.target.value)}/>
-        <input type="text" name="description" id="" placeholder="Opis" className="input-field" onChange={(event)=>setDescription(event.target.value)}/>
-        <select className="input-field category-dropdown"  onChange={(event)=>setCategory(event.target.value)}>
-            <option value="1">Racunari</option>
-            <option value="3">Automobili</option>
-            <option value="4">Bela tehnika</option>
-            <option value="5">Delovi za auta</option>
-            <option value="6">Mobilni telefoni</option>
-        </select>
-        <div>Item specification</div>
-        <div className="item-specs" >
+        <h1 className='form-title'>Novi predmet</h1>
+        <form onSubmit={addItem}>
+            <input type="text" name="itemName" id="item-name" placeholder="Ime predmeta za licitaciju" className="input-field"/>
+            <input type="text" name="description" id="description" placeholder="Opis" className="input-field"/>
+            <input type='number' placeholder = 'Pocetna cena' className="input-field" id='start-price'/>
+            <label htmlFor="category">Kategorija</label>
+            <select className="input-field category-dropdown" id='category' name='category'>
+                <option value="1">Racunari</option>
+                <option value="3">Automobili</option>
+                <option value="4">Bela tehnika</option>
+                <option value="5">Delovi za auta</option>
+                <option value="6">Mobilni telefoni</option>
+            </select>
+            <label htmlFor="category">Valuta</label>
+            <select className="input-field category-dropdown" id='currency' name='currency'>
+                <option value="1">RSD</option>
+                <option value="3">Automobili</option>
+                <option value="4">Bela tehnika</option>
+                <option value="5">Delovi za auta</option>
+                <option value="6">Mobilni telefoni</option>
+            </select>
 
-        </div>
-        <button className='light-blue-bg-white-txt-btn add-specification-btn' onClick={addSpecification}>Specifikacije predmeta</button> <br />
-        <input type="file" name="ItemPictures" id="item-photo" multiple onChange={(event)=>setPicture(event.target.files)}/>
-        <button className='light-blue-bg-white-txt-btn' onClick={addItemApi}>Postavi proizvod za prodaju</button>
+            <label htmlFor="">Specifikacije predmeta</label>
+            <div className="item-specs" >
+
+            </div>
+            <button className='light-blue-bg-white-txt-btn add-specification-btn' onClick={addSpecification}>Nova specifikacija</button> <br />
+            <input type="file" name="ItemPictures" id="item-photo" multiple className="input-field"/>
+            <input type='submit' className='light-blue-bg-white-txt-btn central-form-submit-btn' value='Postavi proizvod za prodaju' />
+        </form>
+        <span className='message'>{message}</span>
     </CentralFormContainer>
   )
 }
